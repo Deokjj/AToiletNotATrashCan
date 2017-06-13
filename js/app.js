@@ -23,6 +23,13 @@ var projectileInterval = setInterval(function(){
   drawProjectile();
   if(intervalIndex>=pointArr.length){
     ctx.clearRect(pointArr[intervalIndex-1][0], pointArr[intervalIndex-1][1], 80, 80);
+    intervalIndex = 0;
     clearInterval(projectileInterval);
   }
 },15);
+
+$('#ex1').slider({
+	formatter: function(value) {
+		return 'Current value: ' + value;
+	}
+});

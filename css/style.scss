@@ -1,11 +1,52 @@
 .background{
   width: 100%;
   height: 700px;
-  background-image: url(../images/toiletnottrashcan.jpg);
+  background-image: url(../images/toiletnottrashcan.png);
   background-size: contain;
   background-repeat: repeat;
 }
 
+
+#gameScreen{
+  width:1150px
+}
+
 #canvas{
   background-color: rgba(255, 0, 0, 0.4);
+}
+
+#itemList{
+  width:130px;
+  height:600px;
+  padding: 20px 15px;
+  float: left;
+  text-align: center;
+
+  img{
+    width: 100px;
+    height: 100px;
+  }
+  p{
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+}
+
+#screenInterface{
+  width:100%;
+  height:100%;
+}
+
+#SliderAndLauncher{
+  position: absolute;
+  top:450px;
+  left:270px;
+
+}
+
+#ex1Slider .slider-selection {
+	background: red;
 }
