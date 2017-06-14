@@ -37,10 +37,11 @@ function Projectile(){
   this.initialY = 200;
   //Math.atan2(60,30)*180/Math.PI;
   this.angle = Math.atan2(1,1);
-  this.power = 80;
+  //min:50 max:150
+  this.power = 100;
   this.initialSpeed = [80,-80];
   //acceleration should be between: x:-10 ~ 10
-  this.acceleration = [-1, 20];
+  this.acceleration = [0, 20];
   this.wind = 0;
 }
 Projectile.prototype.setNewWind = function(){
@@ -48,7 +49,7 @@ Projectile.prototype.setNewWind = function(){
 };
 
 Projectile.prototype.setNewAcceleration = function(){
-  this.acceleration = [this.wind, gravity + this.Objects[currentIndex].weight];
+  this.acceleration = [this.wind, gravity + this.Objects[this.currentIndex].weight];
 };
 
 // Projectile.prototype.showDegree = function(){
@@ -60,7 +61,7 @@ Projectile.prototype.setAngle = function(degree){
 };
 
 Projectile.prototype.setNewSpeed = function(){
-  this.initialSpeed = [ -Math.sin(this.angle)*this.power , Math.cos(this.angle)*this.power ];
+  this.initialSpeed = [ Math.sin(this.angle)*this.power , -Math.cos(this.angle)*this.power ];
 };
 
 Projectile.prototype.calculateFinalT = function(){

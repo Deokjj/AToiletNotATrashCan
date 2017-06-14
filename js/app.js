@@ -23,47 +23,76 @@ $(document).ready(function(){
     if (keyEvent.which === 38 ||
       keyEvent.which === 40 ) {
         keyEvent.preventDefault();
+    }
+    // Up arrow key
+    if(proj.initialY<20){
+      proj.initialY = 20;
+    }
+    else if(proj.initialY>480){
+      proj.initialY = 480;
+    }
+    else{
+      if (keyEvent.which === 38) {
+        ctx.clearRect(0,0,130,600);
+        proj.initialY -= increment;
+        ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
       }
-      // Up arrow key
-      if(proj.initialY<20){
-        proj.initialY = 20;
+      // down arrow key
+      else if (keyEvent.which === 40) {
+        ctx.clearRect(0,0,130,600);
+        proj.initialY += increment;
+        ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
       }
-      else if(proj.initialY>480){
-        proj.initialY = 480;
+      pressCount++;
+      if(pressCount === 12){
+        increment = 6;
       }
-      else{
-        if (keyEvent.which === 38) {
-          ctx.clearRect(0,0,130,600);
-          proj.initialY -= increment;
-          ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
-        }
-        // down arrow key
-        else if (keyEvent.which === 40) {
-          ctx.clearRect(0,0,130,600);
-          proj.initialY += increment;
-          ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
-        }
-        pressCount++;
-        if(pressCount === 12){
-          increment = 6;
-        }
-        else if(pressCount === 19){
-          increment = 10;
-        }
-        else if(pressCount ==26){
-          increment = 16;
-        }
-      } //end of else (key function)
-      $(document).keyup(function(keyEvent){
-        if (keyEvent.which === 38 ||
-          keyEvent.which === 40 ){
-            increment = 3;
-            pressCount = 0;
-          }
-        });
-
-      });
+      else if(pressCount === 19){
+        increment = 10;
+      }
+      else if(pressCount ==26){
+        increment = 16;
+      }
+    } //end of else (key function)
+    $(document).keyup(function(keyEvent){
+      if (keyEvent.which === 38 ||
+        keyEvent.which === 40 ){
+          increment = 3;
+          pressCount = 0;
+      }
     });
+
+  });
+});
+
+// ObjectSelection
+$(document).ready(function(){
+
+  $(".item").click(function(){
+    $(".rainbow").removeClass("rainbow");
+    $(this).addClass("rainbow");
+    if($(this).hasClass("item0")){
+      proj.currentIndex =0;
+    }
+    else if($(this).hasClass("item1")){
+      proj.currentIndex =1;
+    }
+    else if($(this).hasClass("item2")){
+      proj.currentIndex =2;
+    }
+    else if($(this).hasClass("item3")){
+      proj.currentIndex =3;
+    }
+    else if($(this).hasClass("item4")){
+      proj.currentIndex =4;
+    }
+
+    ctx.clearRect(0,0,130,600);
+    throwable.src = proj.Objects[proj.currentIndex].src;
+    ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
+  });
+});
+
 
 //Launch function here
 function drawProjectile(){
@@ -80,7 +109,8 @@ function drawProjectile(){
 $(document).ready(function(){
   // var throwable = new Image();
   $(".launchBtn").click(function(){
-    throwable.src = proj.Objects[proj.currentIndex].src;
+    proj.setNewSpeed();
+    proj.setNewAcceleration();
     totalT =proj.calculateFinalT();
     pointArr = proj.getIntervalPosition(totalT);
 
@@ -93,6 +123,7 @@ $(document).ready(function(){
        placeObject();
      }
    },15);
+  //  proj.setNewWind();
  });//end of launchBtn
 
 });//end of $(document).ready
