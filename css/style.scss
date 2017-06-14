@@ -1,24 +1,23 @@
 .background{
-  width: 100%;
-  height: 700px;
+  height: 660px;
   background-image: url(../images/toiletnottrashcan.png);
   background-size: contain;
   background-repeat: repeat;
+  background-position: center;
 }
 
 
 #gameScreen{
-  width:1150px
 }
 
 #canvas{
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: rgba(255,0,255,0.3);
 }
 
 #itemList{
   width:130px;
   height:600px;
-  padding: 20px 15px;
+  padding: 10px 15px 0 0;
   float: left;
   text-align: center;
 
@@ -33,6 +32,11 @@
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
+  .rainbow {
+      background: rgba(255, 0, 0, 0.8);
+      background: linear-gradient(to right, rgba(255, 165, 0, 0.8) , rgba(255, 255, 0, 0.8), rgba(0,128,0,0.8), rgba(0,255,255,0.8), rgba(0,0,255,0.8), rgba(238,130,238,0.8));
+      border-radius: 20px;
+  }
 }
 
 #screenInterface{
@@ -40,13 +44,42 @@
   height:100%;
 }
 
-#SliderAndLauncher{
+#sliderAndLauncher{
   position: absolute;
-  top:450px;
-  left:270px;
-
+  top:445px;
+  left:255px;
+  color:white;
+  line-height: 13px;
+  p{
+    font-size: 1.1em;
+    // padding-left: 10px;
+    font-weight: 600;
+  }
+  span{
+  }
 }
 
-#ex1Slider .slider-selection {
+#powerSlider .slider-selection {
 	background: red;
 }
+
+.slider.slider-horizontal{
+  width:150px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.launchBtn{
+  width:200px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 1.5em;
+  padding: 4px 12px;
+  font-weight: 600px
+}
+
+// .rainbow {
+//     background: rgba(255, 0, 0, 0.8);
+//     background: linear-gradient(to right, rgba(255, 165, 0, 0.8) , rgba(255, 255, 0, 0.8), rgba(0,128,0,0.8), rgba(0,255,255,0.8), rgba(0,0,255,0.8), rgba(238,130,238,0.8));
+//     border-radius: 20px;
+// }

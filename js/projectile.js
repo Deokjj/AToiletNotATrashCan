@@ -34,7 +34,7 @@ function Projectile(){
     }
   ];
   this.currentIndex =0;
-  this.initialY = 250;
+  this.initialY = 200;
   //Math.atan2(60,30)*180/Math.PI;
   this.angle = Math.atan2(1,1);
   this.power = 80;
