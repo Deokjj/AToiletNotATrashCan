@@ -46,6 +46,28 @@ function Projectile(){
 }
 Projectile.prototype.setNewWind = function(){
   this.wind = -10 + Math.random()*20;
+  console.log(this.wind);
+  if(this.wind <-7){
+    $("#windInfo").html("<<<");
+  }
+  else if(this.wind >=-7 && this.wind<-4){
+    $("#windInfo").html("<<");
+  }
+  else if(this.wind >=-4 && this.wind<-1){
+    $("#windInfo").html("<");
+  }
+  else if(this.wind >=-1 && this.wind<1){
+    $("#windInfo").html("—");
+  }
+  else if(this.wind >=1 && this.wind<4){
+    $("#windInfo").html(">");
+  }
+  else if(this.wind >=4 && this.wind<7){
+    $("#windInfo").html(">>");
+  }
+  else{
+    $("#windInfo").html(">>>");
+  }
 };
 
 Projectile.prototype.setNewAcceleration = function(){

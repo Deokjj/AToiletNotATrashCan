@@ -11,8 +11,7 @@ throwable.src = proj.Objects[proj.currentIndex].src;
 var totalT = 0;
 var pointArr = [];
 placeObject();
-
-var powerSlider = $("#power").slider();
+proj.setNewWind();
 
 //InitialY function here
 $(document).ready(function(){
@@ -45,7 +44,7 @@ $(document).ready(function(){
         ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
       }
       if(proj.initialY > 105){
-        $("#angleSlider").css('top', proj.initialY-822 +"px");
+        $("#angleSlider").css('top', proj.initialY-810 +"px");
       }
       pressCount++;
       if(pressCount === 12){
