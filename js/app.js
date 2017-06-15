@@ -94,7 +94,9 @@ $(document).ready(function(){
     throwable.src = proj.Objects[proj.currentIndex].src;
     ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
   });
+  
 });
+
 
 
 //Launch function here

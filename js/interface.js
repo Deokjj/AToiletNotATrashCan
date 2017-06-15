@@ -70,3 +70,41 @@ powerBar.addEventListener('mouseenter', function(){
 power.addEventListener('mouseleave', function(){
 	cancelAnimationFrame(requestframeref);
 }, false);
+
+$(document).ready(function(){
+	$( ".item" ).hover(
+    function() {
+      if($(this).hasClass("item0")){
+        $("#item0Des").css("visibility","visible");
+      }
+      else if($(this).hasClass("item1")){
+        $("#item1Des").css("visibility","visible");
+      }
+      else if($(this).hasClass("item2")){
+        $("#item2Des").css("visibility","visible");
+      }
+      else if($(this).hasClass("item3")){
+        $("#item3Des").css("visibility","visible");
+      }
+      else if($(this).hasClass("item4")){
+        $("#item4Des").css("visibility","visible");
+      }
+    }, function() {
+      if($(this).hasClass("item0")){
+        $("#item0Des").css("visibility","hidden");
+      }
+      else if($(this).hasClass("item1")){
+        $("#item1Des").css("visibility","hidden");
+      }
+      else if($(this).hasClass("item2")){
+        $("#item2Des").css("visibility","hidden");
+      }
+      else if($(this).hasClass("item3")){
+        $("#item3Des").css("visibility","hidden");
+      }
+      else if($(this).hasClass("item4")){
+        $("#item4Des").css("visibility","hidden");
+      }
+    }
+  );
+});
