@@ -10,8 +10,24 @@ var throwable = new Image();
 throwable.src = proj.Objects[proj.currentIndex].src;
 var totalT = 0;
 var pointArr = [];
-placeObject();
 proj.setNewWind();
+var toilet = new Toilet();
+placeToilet();
+placeObject();
+
+// var toiletImage = new Image();
+// toiletImage.src = toilet.src;
+// setTimeout(placeToilet,300);
+
+function placeObject(){
+  ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
+}
+
+function placeToilet(){
+  toilet.setNewPosition();
+  $(".toilet").css("top", toilet.relativePosition[1]+"px");
+  $(".toilet").css("left", toilet.relativePosition[0]+"px");
+}
 
 //InitialY function here
 $(document).ready(function(){
@@ -94,7 +110,7 @@ $(document).ready(function(){
     throwable.src = proj.Objects[proj.currentIndex].src;
     ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
   });
-  
+
 });
 
 
@@ -122,19 +138,29 @@ $(document).ready(function(){
    var projectileInterval = setInterval(function(){
      drawProjectile();
      if(intervalIndex>=pointArr.length){
-       ctx.clearRect(pointArr[intervalIndex-1][0], pointArr[intervalIndex-1][1], objectSize, objectSize);
-       intervalIndex = 0;
-       clearInterval(projectileInterval);
-       placeObject();
-       proj.setNewWind();
-       $("#screenInterface").show();
+      ctx.clearRect(pointArr[intervalIndex-1][0], pointArr[intervalIndex-1][1], objectSize, objectSize);
+      // ctx.clearRect(0,0,1000,600);
+      // toilet.setNewPosition();
+      intervalIndex = 0;
+      clearInterval(projectileInterval);
+      placeObject();
+      proj.setNewWind();
+      $("#screenInterface").show();
+     }
+
+     var xCenter = pointArr[intervalIndex][0]+40;
+     var yCenter = pointArr[intervalIndex][1]+40;
+     if((xCenter>toilet.targetPosition[0]) &&
+     (xCenter<toilet.targetPosition[0] + toilet.targetSize[0]) &&
+     (yCenter>toilet.targetPosition[1]) &&
+     (yCenter<toilet.targetPosition[1] + toilet.targetSize[1])){
+       pointArr.splice(intervalIndex+1);
+      //  toilet.setNewPosition();
+       placeToilet();
+       //  collided
      }
    },15);
  });//end of launchBtn
 
 });//end of $(document).ready
 //End of Launch function
-
-function placeObject(){
-  ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
-}

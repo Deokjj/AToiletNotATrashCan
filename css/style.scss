@@ -9,10 +9,20 @@
 
 
 #gameScreen{
+  position: relative;
+}
+.game-background {
+  background-color: rgba(255,0,255,0.3);
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  left: 144px;
+  z-index: 10;
 }
 
 #canvas{
-  background-color: rgba(255,0,255,0.3);
+  position: relative;
+  z-index: 100;
 }
 
 #itemList{
@@ -47,6 +57,8 @@
 #screenInterface{
   width:70%;
   height:0;
+  position:relative;
+  z-index: 150;
 }
 
 #sliderAndLauncher{
@@ -121,12 +133,14 @@
 #screenGameInfo{
   width:70%;
   height:0;
+  position: relative;
 }
 #windInfo{
   font-size: 4em;
   opacity: 0.9;
   font-weight: bold;
   position: relative;
+  z-index: 150;
   float: right;
   top: -93px;
   right:-270px;
@@ -189,5 +203,22 @@
     border-radius: 20px 20px 20px 0;
     background-color: rgba(255,255,255,0.4);
     visibility: hidden;
+  }
+}
+
+.toilet{
+  position: relative;
+    z-index: 50;
+  top: -600px;
+  left:400px;
+  width:130px;
+  height: 202px;
+  background-image: url(../images/toilet.png);
+  .targetBox{
+    width:90px;
+    height:60px;
+    border: 0.8px dashed rgba(47,79,79,0.6);
+    border-radius: 20px;
+    transform: translateY(90px);
   }
 }

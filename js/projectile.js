@@ -46,7 +46,6 @@ function Projectile(){
 }
 Projectile.prototype.setNewWind = function(){
   this.wind = -10 + Math.random()*20;
-  console.log(this.wind);
   if(this.wind <-7){
     $("#windInfo").html("<<<");
   }

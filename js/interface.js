@@ -14,7 +14,6 @@ var angleSlider = $("#angleSlider").roundSlider({
     },
 		change: function(args) {
 			$(".rs-tooltip.rs-tooltip-text.edit").html(90 - this.getValue()+" °");
-			console.log(180-this.getValue());
 			proj.setAngle((180-this.getValue()));
 		}
 });
@@ -58,7 +57,6 @@ function updatepower(timestamp){
 	powerstatus.style.width = curcharge + '%';
 	proj.power = 50+ curcharge;
 	$("#sliderAndLauncher span").html("<strong>P: </strong>"+curcharge + " / 100");
-	console.log(greenVal);
 	$("#status").css("background-color","rgba(255," + greenVal+",0,0.8)");
 	requestframeref = requestAnimationFrame(updatepower);
 }
