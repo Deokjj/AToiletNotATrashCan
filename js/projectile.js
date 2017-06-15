@@ -36,7 +36,7 @@ function Projectile(){
   this.currentIndex =0;
   this.initialY = 200;
   //Math.atan2(60,30)*180/Math.PI;
-  this.angle = Math.atan2(1,1);
+  this.angle = Math.atan2(1,-1);
   //min:50 max:150
   this.power = 100;
   this.initialSpeed = [80,-80];
@@ -61,7 +61,7 @@ Projectile.prototype.setAngle = function(degree){
 };
 
 Projectile.prototype.setNewSpeed = function(){
-  this.initialSpeed = [ Math.sin(this.angle)*this.power , -Math.cos(this.angle)*this.power ];
+  this.initialSpeed = [ Math.sin(this.angle)*this.power , Math.cos(this.angle)*this.power ];
 };
 
 Projectile.prototype.calculateFinalT = function(){

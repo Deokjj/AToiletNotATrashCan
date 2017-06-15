@@ -32,6 +32,7 @@ $(document).ready(function(){
       proj.initialY = 480;
     }
     else{
+      // up arrow key
       if (keyEvent.which === 38) {
         ctx.clearRect(0,0,130,600);
         proj.initialY -= increment;
@@ -42,6 +43,9 @@ $(document).ready(function(){
         ctx.clearRect(0,0,130,600);
         proj.initialY += increment;
         ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
+      }
+      if(proj.initialY > 105){
+        $("#angleSlider").css('top', proj.initialY-822 +"px");
       }
       pressCount++;
       if(pressCount === 12){
@@ -107,8 +111,8 @@ function drawProjectile(){
 }
 
 $(document).ready(function(){
-  // var throwable = new Image();
   $(".launchBtn").click(function(){
+    $("#screenInterface").hide();
     proj.setNewSpeed();
     proj.setNewAcceleration();
     totalT =proj.calculateFinalT();
@@ -121,9 +125,10 @@ $(document).ready(function(){
        intervalIndex = 0;
        clearInterval(projectileInterval);
        placeObject();
+       proj.setNewWind();
+       $("#screenInterface").show();
      }
    },15);
-  //  proj.setNewWind();
  });//end of launchBtn
 
 });//end of $(document).ready
