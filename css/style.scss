@@ -1,3 +1,4 @@
+
 .background{
   height: 100%;
   background-image: url(../images/toiletnottrashcan.png);
@@ -395,6 +396,10 @@
     color: rgb(48,48,48);
     font-size: 1.2em;
   }
+  .warningText{
+    color:black;
+    font-size: 2em;
+  }
 }
 
 #introAndOutcome{
@@ -405,7 +410,6 @@
   z-index:160;
   visibility: hidden;
 }
-
 
 @import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
 
@@ -465,4 +469,34 @@
 }
 .smallerFont{
   font-size: 0.7em;
+}
+.grayIt{
+  filter: grayscale(100%);
+}
+
+#gameOver{
+  position: absolute;
+  z-index: 160;
+  left:-5%;
+  width:110%;
+  height:100%;
+  top:0;
+  background-image: url(../images/KimAndTrump.png);
+  background-position: center;
+  background-size: cover;
+  div{
+    padding-top: 200px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 3em;
+    color:white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -2px black;
+
+    h1{
+      font-weight: 700;
+      color:red;
+      font-size: 2.5em;
+      text-shadow: -2px 0 yellow, 0 2px yellow, 2px 0 yellow, 0 -2px yellow;
+    }
+  }
 }

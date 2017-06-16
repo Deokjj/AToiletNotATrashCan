@@ -6,31 +6,36 @@ function Projectile(){
       weight: 4,
       power: [15,25],
       critical: 0.3,
-      src: "./images/toothBrush.png"
+      src: "./images/toothBrush.png",
+      count:10
     },
     {name: "toiletPaper",
       weight: 8,
       power: [25,30],
       critical:0.03,
-      src: "./images/toiletPaper.png"
+      src: "./images/toiletPaper.png",
+      count:10
     },
     {name:"AndrewJackson",
       weight:1,
       power: [30,35],
       critical:0.7,
-      src: "./images/AndrewJackson.png"
+      src: "./images/AndrewJackson.png",
+      count:3
     },
     {name:"iPhone",
       weight:15,
       power: [45,65],
       critical:0.2,
-      src: "./images/iPhone.png"
+      src: "./images/iPhone.png",
+      count:2
     },
     {name:"cat",
       weight: 30,
       power:[70,90],
       critical:0.1,
-      src: "./images/cat.png"
+      src: "./images/cat.png",
+      count:1
     }
   ];
   this.currentIndex =0;
@@ -107,4 +112,45 @@ Projectile.prototype.getIntervalPosition = function(totalT){
     this.initialY+this.initialSpeed[1]*t+this.acceleration[1]*Math.pow(t,2)/2]);
   }
   return pointArr;
+};
+
+Projectile.prototype.useItem = function(){
+  if(this.currentIndex === 0){
+    this.Objects[0].count--;
+    $(".item0 ~ p").html(this.Objects[0].count + "/ 10");
+  }
+  else if(this.currentIndex === 1){
+    this.Objects[1].count--;
+    $(".item1 ~ p").html(this.Objects[1].count + "/ 10");
+  }
+  else if(this.currentIndex === 2){
+    this.Objects[2].count--;
+    $(".item2 ~ p").html(this.Objects[2].count + "/ 10");
+  }
+  else if(this.currentIndex === 3){
+    this.Objects[3].count--;
+    $(".item3 ~ p").html(this.Objects[3].count + "/ 10");
+  }
+  if(this.currentIndex === 4){
+    this.Objects[4].count--;
+    $(".item4 ~ p").html(this.Objects[4].count + "/ 10");
+  }
+
+  if(this.Objects[this.currentIndex].count === 0){
+    $(".item"+this.currentIndex).addClass("grayIt");
+    var isAllZero = true;
+
+    for(var i=0; i<this.Objects.length; i++){
+      console.log(this.Objects[i])
+      if(this.Objects[i].count > 0){
+        isAllZero = false;
+      }
+      console.log(isAllZero);
+    }
+
+    if(isAllZero === true){
+      $("#gameOver").show();
+    }
+  }
+
 };

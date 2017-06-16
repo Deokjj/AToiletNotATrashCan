@@ -14,6 +14,7 @@ proj.setNewWind();
 var toilet = new Toilet();
 placeToilet();
 placeObject();
+$("#gameOver").hide();
 
 
 function placeObject(){
@@ -132,6 +133,14 @@ function drawProjectile(){
 
 $(document).ready(function(){
   $(".launchBtn").click(function(){
+    if(proj.Objects[proj.currentIndex].count === 0){
+      $("#textDisplay").append('<li class="warningText"><strong>Warning- Item Count:0 Use a different weapon</strong></li>');
+      setTimeout(function(){
+        $("#textDisplay li").first().remove();
+      },1800);
+      return;
+    }
+    proj.useItem();
     $("#screenInterface").hide();
     proj.setNewSpeed();
     proj.setNewAcceleration();
@@ -142,7 +151,6 @@ $(document).ready(function(){
      drawProjectile();
      if(intervalIndex>=pointArr.length){
       ctx.clearRect(pointArr[intervalIndex-1][0], pointArr[intervalIndex-1][1], objectSize, objectSize);
-      // ctx.clearRect(0,0,1000,600);
       intervalIndex = 0;
       clearInterval(projectileInterval);
       placeObject();
@@ -165,10 +173,11 @@ $(document).ready(function(){
      }
    },15);
  });
+
 var levelCount =1;
 function displayWin(){
   levelCount++;
-  $(".win .smallerFont").html("<span>L</span><span>E</span><span>V</span><span>E</span><span>L</span><span>:</span><span> </span><span>"+levelCount+"</span>")
+  $(".win .smallerFont").html("<span>L</span><span>E</span><span>V</span><span>E</span><span>L</span><span>:</span><span> </span><span>"+levelCount+"</span>");
   $(".win").addClass("winAni");
   $(".toilet").fadeOut(2500);
   $("#angleSlider").fadeOut(1500);
@@ -182,8 +191,7 @@ function displayWin(){
     $("#angleSlider").fadeIn(1000);
     $("#sliderAndLauncher").fadeIn(1000);
   },3500);
-}
- //end of launchBtn
+}//end of launchBtn
 
 });//end of $(document).ready
 //End of Launch function
