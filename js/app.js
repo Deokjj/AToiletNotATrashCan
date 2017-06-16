@@ -31,6 +31,8 @@ function placeToilet(){
   $(".criticalDamage").css("left",(toilet.relativePosition[0]-37)+"px");
   $(".heal").css("top",(toilet.relativePosition[1]-210)+"px");
   $(".heal").css("left",(toilet.relativePosition[0]-37)+"px");
+  $(".gif").css("top",(toilet.position[1]-150)+"px");
+  $(".gif").css("left",(toilet.position[0]-15)+"px");
 }
 
 //InitialY function here
@@ -202,6 +204,16 @@ function attack(){
   var maxDamage = proj.Objects[proj.currentIndex].power[1];
   var criticalP = proj.Objects[proj.currentIndex].critical;
   var damage = minDamage + Math.random()*(maxDamage - minDamage);
+
+  var currentIndex = proj.currentIndex;
+
+  if(currentIndex === 4){
+    $(".gif").addClass("catGif");
+    setTimeout(function(){
+      $(".gif").removeClass("catGif");
+    },4800);
+  }
+
   if( Math.random() < criticalP){
     damage = 2*damage;
     $('.criticalDamage').html("-" + Math.round(damage)+"!!");
