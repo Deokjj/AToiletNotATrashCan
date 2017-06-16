@@ -15,9 +15,6 @@ var toilet = new Toilet();
 placeToilet();
 placeObject();
 
-// var toiletImage = new Image();
-// toiletImage.src = toilet.src;
-// setTimeout(placeToilet,300);
 
 function placeObject(){
   ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
@@ -27,6 +24,10 @@ function placeToilet(){
   toilet.setNewPosition();
   $(".toilet").css("top", toilet.relativePosition[1]+"px");
   $(".toilet").css("left", toilet.relativePosition[0]+"px");
+  $(".regularDamage").css("top",(toilet.relativePosition[1]-500)+"px");
+  $(".regularDamage").css("left",(toilet.relativePosition[0]-37)+"px");
+  $(".criticalDamage").css("top",(toilet.relativePosition[1]-610)+"px");
+  $(".criticalDamage").css("left",(toilet.relativePosition[0]-37)+"px");
 }
 
 //InitialY function here
@@ -154,7 +155,7 @@ $(document).ready(function(){
      (yCenter>toilet.targetPosition[1]) &&
      (yCenter<toilet.targetPosition[1] + toilet.targetSize[1])){
        pointArr.splice(intervalIndex+1);
-       placeToilet();
+       setTimeout(placeToilet,600);
        attack();
      }
    },15);
@@ -172,6 +173,18 @@ function attack(){
   if( Math.random() < criticalP){
     damage = 2*damage;
     console.log("critical!");
+    $('.criticalDamage').html("-" + Math.round(damage));
+    $('.criticalDamage').addClass('criEffect');
+    setTimeout(function() {
+        $('.criticalDamage').removeClass('criEffect');
+    },1430);
+  }
+  else{
+    $('.regularDamage').html("-" + Math.round(damage));
+    $('.regularDamage').addClass('regEffect');
+    setTimeout(function() {
+        $('.regularDamage').removeClass('regEffect');
+    },930);
   }
   toilet.health -= damage;
   console.log("damage was "+ damage);

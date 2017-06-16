@@ -73,10 +73,6 @@ Projectile.prototype.setNewAcceleration = function(){
   this.acceleration = [this.wind, gravity + this.Objects[this.currentIndex].weight];
 };
 
-// Projectile.prototype.showDegree = function(){
-//   return this.angle * (180 / Math.PI);
-// };
-
 Projectile.prototype.setAngle = function(degree){
   this.angle = degree *(Math.PI/180);
 };

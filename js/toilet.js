@@ -1,4 +1,5 @@
 function Toilet(){
+  this.maxHealth = 200;
   this.health = 200;
   this.position = [];
   this.relativePosition = [];
@@ -20,7 +21,7 @@ Toilet.prototype.setNewPosition = function(){
 };
 
 Toilet.prototype.updateHp = function(){
-  var lostHpPercentage = (200-this.health)/2;
-  $("#hp p").html(Math.floor(this.health) + " / 200");
+  var lostHpPercentage = (this.maxHealth-this.health)/(this.maxHealth/100);
+  $("#hp p").html(Math.round(this.health) + " / " + this.maxHealth);
   $(".redIcon").css("clip-path","inset(" + lostHpPercentage+"% 0 0 0)");
 };
