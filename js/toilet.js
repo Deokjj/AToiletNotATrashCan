@@ -36,8 +36,12 @@ $(document).ready(function(){
       setTimeout(function() {
           $('.heal').removeClass('healEffect');
       },460);
-    toilet.health +=healAmount;
-    toilet.updateHp();
+      $("#textDisplay").append('<li class="healText">Toilet healed <strong>+2</strong> points </li>');
+      setTimeout(function(){
+        $("#textDisplay li").first().remove();
+      },2200);
+      toilet.health +=healAmount;
+      toilet.updateHp();
     }
   },4000);
 

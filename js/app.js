@@ -24,11 +24,11 @@ function placeToilet(){
   toilet.setNewPosition();
   $(".toilet").css("top", toilet.relativePosition[1]+"px");
   $(".toilet").css("left", toilet.relativePosition[0]+"px");
-  $(".regularDamage").css("top",(toilet.relativePosition[1]-500)+"px");
+  $(".regularDamage").css("top",(toilet.relativePosition[1])+"px");
   $(".regularDamage").css("left",(toilet.relativePosition[0]-37)+"px");
-  $(".criticalDamage").css("top",(toilet.relativePosition[1]-610)+"px");
+  $(".criticalDamage").css("top",(toilet.relativePosition[1]-110)+"px");
   $(".criticalDamage").css("left",(toilet.relativePosition[0]-37)+"px");
-  $(".heal").css("top",(toilet.relativePosition[1]-710)+"px");
+  $(".heal").css("top",(toilet.relativePosition[1]-210)+"px");
   $(".heal").css("left",(toilet.relativePosition[0]-37)+"px");
 }
 
@@ -159,9 +159,31 @@ $(document).ready(function(){
        pointArr.splice(intervalIndex+1);
        setTimeout(placeToilet,600);
        attack();
+       if(toilet.health<=0){
+         displayWin();
+       }
      }
    },15);
- });//end of launchBtn
+ });
+var levelCount =1;
+function displayWin(){
+  levelCount++;
+  $(".win .smallerFont").html("<span>L</span><span>E</span><span>V</span><span>E</span><span>L</span><span>:</span><span> </span><span>"+levelCount+"</span>")
+  $(".win").addClass("winAni");
+  $(".toilet").fadeOut(2500);
+  $("#angleSlider").fadeOut(1500);
+  $("#sliderAndLauncher").fadeOut(1500);
+  setTimeout(function(){
+    toilet.maxHealth *= 2;
+    toilet.health = toilet.maxHealth;
+    toilet.updateHp();
+    $(".win").removeClass("winAni");
+    $(".toilet").fadeIn(2000);
+    $("#angleSlider").fadeIn(1000);
+    $("#sliderAndLauncher").fadeIn(1000);
+  },3500);
+}
+ //end of launchBtn
 
 });//end of $(document).ready
 //End of Launch function
@@ -174,12 +196,16 @@ function attack(){
   var damage = minDamage + Math.random()*(maxDamage - minDamage);
   if( Math.random() < criticalP){
     damage = 2*damage;
-    console.log("critical!");
     $('.criticalDamage').html("-" + Math.round(damage)+"!!");
     $('.criticalDamage').addClass('criEffect');
     setTimeout(function() {
         $('.criticalDamage').removeClass('criEffect');
     },1430);
+    $("#textDisplay").append('<li class="criticalText"><strong>Critical Hit!!</strong>: Damaged <strong>'+ damage + '</strong> to the toilet </li>');
+    setTimeout(function(){
+      $("#textDisplay li").first().remove();
+    },1800);
+
   }
   else{
     $('.regularDamage').html("-" + Math.round(damage));
@@ -187,6 +213,10 @@ function attack(){
     setTimeout(function() {
         $('.regularDamage').removeClass('regEffect');
     },930);
+    $("#textDisplay").append('<li class="criticalText"><strong>Hit</strong>: Damaged <strong>'+ damage + '</strong> to the toilet </li>');
+    setTimeout(function(){
+      $("#textDisplay li").first().remove();
+    },1800);
   }
   toilet.health -= damage;
   console.log("damage was "+ damage);

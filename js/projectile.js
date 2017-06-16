@@ -47,26 +47,36 @@ function Projectile(){
 Projectile.prototype.setNewWind = function(){
   this.wind = -10 + Math.random()*20;
   if(this.wind <-7){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>Strongest wind to West: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html("<<<");
   }
   else if(this.wind >=-7 && this.wind<-4){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>Strong wind to West: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html("<<");
   }
   else if(this.wind >=-4 && this.wind<-1){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>wind to West: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html("<");
   }
   else if(this.wind >=-1 && this.wind<1){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>mild wind: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html("—");
   }
   else if(this.wind >=1 && this.wind<4){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>wind to East: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html(">");
   }
   else if(this.wind >=4 && this.wind<7){
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>Strong wind to East: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html(">>");
   }
   else{
+    $("#textDisplay").append('<li class="windText">Wind Direction has changed- <strong>Strongest wind to East: '+ (this.wind).toFixed(2) + '</strong> (min:-10 ~ max:+10)</li>');
     $("#windInfo").html(">>>");
   }
+  setTimeout(function(){
+    $("#textDisplay li").first().remove();
+  },1800);
 };
 
 Projectile.prototype.setNewAcceleration = function(){
