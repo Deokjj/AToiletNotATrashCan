@@ -106,3 +106,37 @@ $(document).ready(function(){
     }
   );
 });
+
+ion.sound({
+    // List of sound files to load
+    sounds: [
+        {
+          name: "background",
+          loop: true,
+          volume: 0.6
+        },
+        {name: "meow",
+         loop: 1,
+         volume: 1
+        },
+        {name: "catAction",
+          volume:1,
+          loop:1
+        }
+    ],
+
+    // Path to the folder where the sound files are
+    path: "ion.sound-3.0.7/sounds/",
+
+    // Starts loading sound files even before you use them
+    preload: true,
+
+    // Multiple sounds at once
+    multiplay: true,
+});
+
+
+
+$(document).ready(function () {
+    ion.sound.play('background');
+});

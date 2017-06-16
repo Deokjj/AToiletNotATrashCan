@@ -28,6 +28,8 @@ function placeToilet(){
   $(".regularDamage").css("left",(toilet.relativePosition[0]-37)+"px");
   $(".criticalDamage").css("top",(toilet.relativePosition[1]-610)+"px");
   $(".criticalDamage").css("left",(toilet.relativePosition[0]-37)+"px");
+  $(".heal").css("top",(toilet.relativePosition[1]-710)+"px");
+  $(".heal").css("left",(toilet.relativePosition[0]-37)+"px");
 }
 
 //InitialY function here
@@ -105,6 +107,7 @@ $(document).ready(function(){
     }
     else if($(this).hasClass("item4")){
       proj.currentIndex =4;
+      ion.sound.play('meow');
     }
 
     ctx.clearRect(0,0,130,600);
@@ -113,7 +116,6 @@ $(document).ready(function(){
   });
 
 });
-
 
 
 //Launch function here
@@ -173,7 +175,7 @@ function attack(){
   if( Math.random() < criticalP){
     damage = 2*damage;
     console.log("critical!");
-    $('.criticalDamage').html("-" + Math.round(damage));
+    $('.criticalDamage').html("-" + Math.round(damage)+"!!");
     $('.criticalDamage').addClass('criEffect');
     setTimeout(function() {
         $('.criticalDamage').removeClass('criEffect');

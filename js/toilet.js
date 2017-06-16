@@ -1,6 +1,6 @@
 function Toilet(){
-  this.maxHealth = 200;
-  this.health = 200;
+  this.maxHealth = 25;
+  this.health = 25;
   this.position = [];
   this.relativePosition = [];
   this.targetPosition = [];
@@ -25,3 +25,20 @@ Toilet.prototype.updateHp = function(){
   $("#hp p").html(Math.round(this.health) + " / " + this.maxHealth);
   $(".redIcon").css("clip-path","inset(" + lostHpPercentage+"% 0 0 0)");
 };
+
+var healAmount =2;
+//Toilet heals
+$(document).ready(function(){
+
+  var healUp = setInterval(function(){
+    if(toilet.health < toilet.maxHealth){
+      $('.heal').addClass('healEffect');
+      setTimeout(function() {
+          $('.heal').removeClass('healEffect');
+      },460);
+    toilet.health +=healAmount;
+    toilet.updateHp();
+    }
+  },4000);
+
+});
