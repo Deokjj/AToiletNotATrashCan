@@ -8,6 +8,9 @@ function Toilet(){
   this.size = [130,202];
 }
 
+//Object must score in toilet where
+//(xposition ~ xposition +60)
+//(yposition +80 ~ yposition + 170)
 Toilet.prototype.setNewPosition = function(){
   var x = 200 + Math.random()*680;
   var y = 60 + Math.random()*340;
@@ -16,6 +19,8 @@ Toilet.prototype.setNewPosition = function(){
   this.targetPosition =[x,y+80];
 };
 
-//Object must score in toilet where
-//(xposition +5 ~ xposition +90)
-//(yposition +85 ~ yposition + 155)
+Toilet.prototype.updateHp = function(){
+  var lostHpPercentage = (200-this.health)/2;
+  $("#hp p").html(Math.floor(this.health) + " / 200");
+  $(".redIcon").css("clip-path","inset(" + lostHpPercentage+"% 0 0 0)");
+};

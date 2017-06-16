@@ -208,7 +208,7 @@
 
 .toilet{
   position: relative;
-    z-index: 50;
+  z-index: 50;
   top: -600px;
   left:400px;
   width:130px;
@@ -221,4 +221,41 @@
     border-radius: 20px;
     transform: translateY(90px);
   }
+}
+
+#hp{
+  position: relative;
+  top: -780px;
+  left: 970px;
+  width: 130px;
+  p{
+    width:130px;
+    position:relative;
+    z-index: 150;
+    top: -110px;
+    opacity: 0.8;
+    font-size: 1.4em;
+    color:white;
+    text-align: center;
+
+  }
+}
+
+.toiletHp{
+  background-image: url(../images/toiletIcon.png);
+  width:120px;
+  height: 120px;
+}
+
+.blackIcon{
+  position: relative;
+  top: -120px;
+  filter: grayscale(100%) brightness(-5);
+  opacity: 0.5;
+  z-index: 110;
+}
+.redIcon{
+  position: relative;
+  z-index: 150;
+  clip-path: inset(0 0 0 0);
 }

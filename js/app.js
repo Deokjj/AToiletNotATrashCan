@@ -140,7 +140,6 @@ $(document).ready(function(){
      if(intervalIndex>=pointArr.length){
       ctx.clearRect(pointArr[intervalIndex-1][0], pointArr[intervalIndex-1][1], objectSize, objectSize);
       // ctx.clearRect(0,0,1000,600);
-      // toilet.setNewPosition();
       intervalIndex = 0;
       clearInterval(projectileInterval);
       placeObject();
@@ -155,12 +154,26 @@ $(document).ready(function(){
      (yCenter>toilet.targetPosition[1]) &&
      (yCenter<toilet.targetPosition[1] + toilet.targetSize[1])){
        pointArr.splice(intervalIndex+1);
-      //  toilet.setNewPosition();
        placeToilet();
-       //  collided
+       attack();
      }
    },15);
  });//end of launchBtn
 
 });//end of $(document).ready
 //End of Launch function
+
+//Damage to toilet and update it's health
+function attack(){
+  var minDamage = proj.Objects[proj.currentIndex].power[0];
+  var maxDamage = proj.Objects[proj.currentIndex].power[1];
+  var criticalP = proj.Objects[proj.currentIndex].critical;
+  var damage = minDamage + Math.random()*(maxDamage - minDamage);
+  if( Math.random() < criticalP){
+    damage = 2*damage;
+    console.log("critical!");
+  }
+  toilet.health -= damage;
+  console.log("damage was "+ damage);
+  toilet.updateHp();
+}
