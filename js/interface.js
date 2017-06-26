@@ -113,7 +113,7 @@ ion.sound({
         {
           name: "background",
           loop: true,
-          volume: 0.6
+          volume: 0.4
         },
         {name: "meow",
          loop: 1,
@@ -122,6 +122,30 @@ ion.sound({
         {name: "catAction",
           volume:1,
           loop:1
+        },
+        {name: "explosion",
+          loop:1,
+          volume:1
+        },
+        {name: "attacked",
+          loop:1,
+          volume:1
+        },
+        {name:"throw",
+          loop:1,
+          volume:1
+        },
+        {name:"flush",
+          loop:1,
+          volume:0.9
+        },
+        {name:"equip",
+          loop:1,
+          volume:0.6
+        },
+        {name:"gameover",
+          loop:1,
+          volume:1
         }
     ],
 

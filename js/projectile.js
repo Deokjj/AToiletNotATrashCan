@@ -27,7 +27,7 @@ function Projectile(){
       weight:15,
       power: [45,65],
       critical:0.2,
-      src: "./images/iPhone.png",
+      src: "./images/GalaxyNote.png",
       count:2
     },
     {name:"cat",
@@ -125,15 +125,16 @@ Projectile.prototype.useItem = function(){
   }
   else if(this.currentIndex === 2){
     this.Objects[2].count--;
-    $(".item2 ~ p").html(this.Objects[2].count + "/ 10");
+    $(".item2 ~ p").html(this.Objects[2].count + "/ 3");
   }
   else if(this.currentIndex === 3){
     this.Objects[3].count--;
-    $(".item3 ~ p").html(this.Objects[3].count + "/ 10");
+    $(".item3 ~ p").html(this.Objects[3].count + "/ 2");
   }
   if(this.currentIndex === 4){
     this.Objects[4].count--;
-    $(".item4 ~ p").html(this.Objects[4].count + "/ 10");
+    $(".item4 ~ p").html(this.Objects[4].count + "/ 1");
+    ion.sound.play('catAction');
   }
 
   if(this.Objects[this.currentIndex].count === 0){
@@ -141,14 +142,13 @@ Projectile.prototype.useItem = function(){
     var isAllZero = true;
 
     for(var i=0; i<this.Objects.length; i++){
-      console.log(this.Objects[i])
       if(this.Objects[i].count > 0){
         isAllZero = false;
       }
-      console.log(isAllZero);
     }
 
     if(isAllZero === true){
+      ion.sound.play('gameover');
       $("#gameOver").show();
     }
   }

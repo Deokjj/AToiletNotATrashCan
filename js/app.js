@@ -91,33 +91,36 @@ $(document).ready(function(){
 });
 
 // ObjectSelection
+function clickObj(){
+  $(".rainbow").removeClass("rainbow");
+  $(this).addClass("rainbow");
+  if($(this).hasClass("item0")){
+    proj.currentIndex =0;
+  }
+  else if($(this).hasClass("item1")){
+    proj.currentIndex =1;
+  }
+  else if($(this).hasClass("item2")){
+    proj.currentIndex =2;
+  }
+  else if($(this).hasClass("item3")){
+    proj.currentIndex =3;
+  }
+  else if($(this).hasClass("item4")){
+    proj.currentIndex =4;
+    ion.sound.play('meow');
+  }
+  // if(!$(this).hasClass("item4")){
+    ion.sound.play('equip');
+  // }
+
+  ctx.clearRect(0,0,130,600);
+  throwable.src = proj.Objects[proj.currentIndex].src;
+  ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
+}
+
 $(document).ready(function(){
-
-  $(".item").click(function(){
-    $(".rainbow").removeClass("rainbow");
-    $(this).addClass("rainbow");
-    if($(this).hasClass("item0")){
-      proj.currentIndex =0;
-    }
-    else if($(this).hasClass("item1")){
-      proj.currentIndex =1;
-    }
-    else if($(this).hasClass("item2")){
-      proj.currentIndex =2;
-    }
-    else if($(this).hasClass("item3")){
-      proj.currentIndex =3;
-    }
-    else if($(this).hasClass("item4")){
-      proj.currentIndex =4;
-      ion.sound.play('meow');
-    }
-
-    ctx.clearRect(0,0,130,600);
-    throwable.src = proj.Objects[proj.currentIndex].src;
-    ctx.drawImage(throwable,50,proj.initialY,objectSize,objectSize);
-  });
-
+  $(".item").click(clickObj);
 });
 
 
@@ -135,6 +138,7 @@ function drawProjectile(){
 
 $(document).ready(function(){
   $(".launchBtn").click(function(){
+    //prevent launching when items are used
     if(proj.Objects[proj.currentIndex].count === 0){
       $("#textDisplay").append('<li class="warningText"><strong>Warning- Item Count:0 Use a different weapon</strong></li>');
       setTimeout(function(){
@@ -142,6 +146,13 @@ $(document).ready(function(){
       },1800);
       return;
     }
+    if(proj.currentIndex === 4){
+      ion.sound.play('catAction');
+    }
+    else{
+      ion.sound.play('throw');
+    }
+    $(".item").off("click");
     proj.useItem();
     $("#screenInterface").hide();
     proj.setNewSpeed();
@@ -158,6 +169,7 @@ $(document).ready(function(){
       placeObject();
       proj.setNewWind();
       $("#screenInterface").show();
+      $(".item").on("click",clickObj);
      }
 
      var xCenter = pointArr[intervalIndex][0]+40;
@@ -170,6 +182,7 @@ $(document).ready(function(){
        setTimeout(placeToilet,600);
        attack();
        if(toilet.health<=0){
+         ion.sound.play('flush');
          displayWin();
        }
      }
@@ -206,6 +219,23 @@ function attack(){
   var damage = minDamage + Math.random()*(maxDamage - minDamage);
 
   var currentIndex = proj.currentIndex;
+  ion.sound.play('attacked');
+
+  if(currentIndex === 2){
+    $(".gif").addClass("twentyGif");
+    setTimeout(function(){
+      $(".gif").removeClass("twentyGif");
+    },4000);
+  }
+
+  if(currentIndex === 3){
+    $(".gif").addClass("galGif");
+    setTimeout(function(){ion.sound.play('explosion');},2000);
+    setTimeout(function(){
+      $(".gif").removeClass("galGif");
+    },2500);
+
+  }
 
   if(currentIndex === 4){
     $(".gif").addClass("catGif");
